@@ -54,7 +54,7 @@ import org.eevolution.model.MDDFreightLine;
  *	Generate Shipments.
  *	Manual or Automatic
  *	
- *  @author Jorg Janke
+ *  @author SusanneCalderon
  *  @version $Id: InOutGenerate.java,v 1.2 2006/07/30 00:51:01 jjanke Exp $
  */
 public class SBP_CreateFreightLineFromOrderLine extends SvrProcess
