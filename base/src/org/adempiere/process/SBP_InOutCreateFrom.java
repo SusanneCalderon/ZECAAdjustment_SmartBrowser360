@@ -30,6 +30,7 @@ import org.compiere.model.MOrderLine;
 import org.compiere.model.MProduct;
 import org.compiere.model.MWarehouse;
 import org.compiere.model.Query;
+import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.eevolution.form.Browser;
 
@@ -143,15 +144,10 @@ public class SBP_InOutCreateFrom extends SBP_InOutCreateFromAbstract {
 				iol.setAD_OrgTrx_ID(orderLine.getAD_OrgTrx_ID());
 				iol.setUser1_ID(orderLine.getUser1_ID());
 				iol.setUser2_ID(orderLine.getUser2_ID());
-				//	Set Charge
+				iol.set_ValueOfColumn("DD_FreightLine_ID", getddFreightLine_ID(orderLine.getC_OrderLine_ID()));
 
-				// Set locator
-				if(m_M_Locator_ID == 0) {
-
-				}
 				iol.setM_Locator_ID(m_M_Locator_ID);
 				iol.saveEx();
-				//	Add to created
 				created ++;
 			}
 		//	
@@ -193,5 +189,15 @@ public class SBP_InOutCreateFrom extends SBP_InOutCreateFromAbstract {
 		}
 		return m_values;
 	}
+	
+	
+	private int getddFreightLine_ID(int cOrderLine_ID) {
+        return DB.getSQLValueEx(
+                get_TrxName(),
+                "SELECT fl.DD_FreightLine_ID FROM DD_FreightLine fl " +
+                "INNER JOIN C_OrderLine ol ON (fl.C_OrderLine_ID=ol.C_OrderLine_ID) " + 
+                "WHERE ol.C_OrderLine_ID=? FETCH FIRST 1 ROW ONLY",
+                cOrderLine_ID);
+	} // getddFreightLine_ID
 		
 }
