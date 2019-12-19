@@ -163,7 +163,7 @@ public class SBP_InOutCreateFrom extends SBP_InOutCreateFromAbstract {
 		for (Entry<String, Object> entry : values.entrySet()) {
 			String columnName = entry.getKey();
 			
-				if (columnName.equals("OL_QtyEntered"))
+				if (columnName.equals("FL_MovementQty"))
 				{
 					BigDecimal qtyTodeliver = (BigDecimal)entry.getValue();
 					if (qtyTodeliver.compareTo(toDeliver) <0)

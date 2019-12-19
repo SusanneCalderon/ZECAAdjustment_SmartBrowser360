@@ -206,7 +206,7 @@ public class SBP_CreateFreightLineFromOrderLine extends SvrProcess
 		for (Entry<String, Object> entry : values.entrySet()) {
 			String columnName = entry.getKey();
 			
-				if (columnName.equals(alias + "_QtyToDeliver"))
+				if (columnName.equals("L_MovementQty"))
 				{
 					BigDecimal qtyTodeliver = (BigDecimal)entry.getValue();
 					if (qtyTodeliver.compareTo(toDeliver) <0)
